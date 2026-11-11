@@ -43,27 +43,33 @@ a:hover{text-decoration:underline}
 .help-btn:hover{background:var(--pl-surface-alt);color:var(--pl-ink)}
 
 .body{flex:1;min-height:0;display:flex}
-/* views: summary and family trees */
-.views{display:flex;gap:2px;margin-left:18px;padding:3px;border-radius:10px;background:var(--pl-surface-alt)}
-.views button{font-size:.82rem;font-weight:600;padding:5px 12px;border-radius:8px;color:var(--pl-muted)}
-.views button:hover{color:var(--pl-ink)}
-.views button[aria-current="true"]{background:var(--pl-surface);color:var(--pl-olive-dark);box-shadow:0 1px 2px rgba(38,38,36,.08)}
+/* the summary opens over the trees from one header button */
+.sum-btn{display:inline-flex;align-items:center;gap:6px;margin-left:18px;padding:6px 12px;border:1px solid var(--pl-border);border-radius:999px;font-size:.82rem;font-weight:600;color:var(--pl-ink);background:var(--pl-surface)}
+.sum-btn svg{width:14px;height:14px;fill:none;stroke:var(--pl-olive);stroke-width:1.8;stroke-linecap:round}
+.sum-btn:hover{background:var(--pl-surface-alt)}
+.sum-btn[aria-pressed="true"]{background:var(--pl-ok-wash);border-color:#c9dcab;color:var(--pl-olive-dark)}
 .summary{display:none;flex:1;min-height:0;overflow-y:auto;background:var(--pl-bg)}
 .view-summary .summary{display:block}
-.view-summary .body,.view-summary .totals{display:none}
-.sum-wrap{max-width:1180px;margin:0 auto;padding:20px 24px 40px;display:flex;flex-direction:column;gap:14px}
-.tiles{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:12px}
+.view-summary .body{display:none}
+.sum-wrap{max-width:1100px;margin:0 auto;padding:18px 24px 40px;display:flex;flex-direction:column;gap:14px}
+.sum-top{display:flex;align-items:center;gap:12px}
+.sum-top h2{font-size:1.3rem;font-weight:800;letter-spacing:-.01em}
+.sum-close{margin-left:auto;font-size:.82rem;font-weight:600;color:var(--pl-olive);padding:6px 12px;border:1px solid var(--pl-border);border-radius:9px;background:var(--pl-surface)}
+.sum-close::before{content:"← "}
+.sum-close:hover{background:var(--pl-ok-wash)}
+.kind{display:inline-block;font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--pl-close-bg);color:var(--pl-close);margin-right:6px}
+.tiles{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}
 .tile{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;background:var(--pl-surface);border:1px solid var(--pl-border);border-radius:14px;padding:14px 16px}
 button.tile:hover{border-color:var(--pl-olive-light);box-shadow:0 2px 8px rgba(38,38,36,.06)}
 .tile b{font-size:1.75rem;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums}
 .tile span{font-size:.8rem;color:var(--pl-muted)}
 .tile.main{background:var(--pl-ok-wash);border-color:#d9e6c2}
 .tile.main b{color:var(--pl-olive-dark);font-size:2.3rem}
-.sum-row{display:grid;grid-template-columns:1.1fr 1.1fr .9fr;gap:12px}
+.sum-row{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
 .panel{background:var(--pl-surface);border:1px solid var(--pl-border);border-radius:14px;padding:14px 16px}
 .panel h3{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--pl-muted);margin-bottom:10px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .h-note{font-size:.76rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--pl-faint)}
-.pbar{display:grid;grid-template-columns:150px 1fr 38px;gap:10px;align-items:center;font-size:.82rem;margin:7px 0}
+.pbar{display:grid;grid-template-columns:140px 1fr 38px;gap:10px;align-items:center;font-size:.82rem;margin:7px 0}
 .pbar small{color:var(--pl-faint);font-size:.72rem}
 .pbar i{display:block;height:8px;border-radius:4px;background:var(--pl-none-bg);overflow:hidden}
 .pbar u{display:block;height:100%;background:var(--pl-olive);border-radius:4px}
@@ -81,12 +87,13 @@ button.tile:hover{border-color:var(--pl-olive-light);box-shadow:0 2px 8px rgba(3
 .starts span{font-size:.82rem;color:var(--pl-muted)}
 .starts em{margin-left:auto;font-style:normal;font-weight:700;font-size:.78rem;color:var(--pl-olive)}
 .starts em::after{content:" →"}
-.squares{display:grid;grid-template-columns:repeat(auto-fill,minmax(13px,1fr));gap:3px}
-.squares i{display:block;aspect-ratio:1;border-radius:3px;cursor:pointer}
+.squares{display:grid;grid-template-columns:repeat(auto-fill,minmax(9px,1fr));gap:2px}
+.squares i{display:block;aspect-ratio:1;border-radius:2px;cursor:pointer}
 .squares i:hover{outline:2px solid var(--pl-ink);outline-offset:1px}
 .q0{background:var(--pl-none-bg)}.q1{background:#d6e3bd}.q2{background:#aec67e}.q3{background:#7d9a3a}.q4{background:#4d6419}
-.sq-key{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:.74rem;color:var(--pl-muted)}
-.sq-key i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.sq-key{display:flex;align-items:center;gap:3px;margin-top:10px;font-size:.72rem;color:var(--pl-muted)}
+.sq-key span{margin:0 4px}
+.sq-key i{display:inline-block;width:11px;height:11px;border-radius:2px}
 .qtabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
 .qtabs button{font-size:.8rem;padding:5px 11px;border-radius:9px;border:1px solid var(--pl-border);color:var(--pl-muted);display:inline-flex;gap:7px;align-items:center}
 .qtabs button b{color:var(--pl-ink);font-variant-numeric:tabular-nums}
@@ -104,7 +111,7 @@ button.tile:hover{border-color:var(--pl-olive-light);box-shadow:0 2px 8px rgba(3
 .qtable tbody tr:hover{background:var(--pl-ok-wash)}
 .more{margin-top:10px;font-size:.82rem;font-weight:600;color:var(--pl-olive);padding:6px 12px;border:1px solid var(--pl-border);border-radius:9px}
 .more:hover{background:var(--pl-ok-wash)}
-@media (max-width:900px){ .tiles{grid-template-columns:1fr 1fr} .sum-row{grid-template-columns:1fr} .pbar{grid-template-columns:120px 1fr 34px} .views{margin-left:auto} }
+@media (max-width:900px){ .tiles{grid-template-columns:1fr 1fr} .sum-row{grid-template-columns:1fr} .pbar{grid-template-columns:120px 1fr 34px} .sum-btn{margin-left:auto} .sum-btn span{display:none} }
 
 /* Sidebar */
 .sidebar{width:304px;flex:none;border-right:1px solid var(--pl-border);background:var(--pl-surface);display:flex;flex-direction:column;min-height:0}
@@ -317,7 +324,7 @@ dialog::backdrop{background:rgba(38,38,36,.28)}
   .body{flex-direction:column}
   .sidebar{width:auto;max-height:30vh;border-right:none;border-bottom:1px solid var(--pl-border)}
   .totals{display:none}
-  .help-btn{margin-left:auto}
+  .help-btn{margin-left:8px}
   .site-header{padding:11px 16px}
   .fam-header{padding:10px 16px}
   .cover{margin-left:0}
@@ -343,8 +350,8 @@ dialog::backdrop{background:rgba(38,38,36,.28)}
         <div class="brand-lab">Overlap with the FamilySearch Family Tree · BYU Record Linking Lab</div>
       </div>
     </div>
-    <nav class="views" aria-label="Views"><button data-view="summary" aria-current="false">Summary</button><button data-view="trees" aria-current="true">Family trees</button></nav>
     <div class="totals" id="totals"></div>
+    <button class="sum-btn" id="sumBtn" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 13.5V8.5M6.5 13.5v-9M10.5 13.5V6.5M14 13.5H2"/></svg><span>Summary</span></button>
     <button class="help-btn" id="helpBtn" aria-label="How to read this page">?</button>
   </header>
   <div class="body">
@@ -360,9 +367,7 @@ dialog::backdrop{background:rgba(38,38,36,.28)}
             <option value="on">Most people on the Family Tree</option>
             <option value="pct">Highest share on the Family Tree</option>
             <option value="add">Most people to add</option>
-            <option value="facts">Most new details</option>
-            <option value="issue">Most tree disagreements</option>
-            <option value="size">Largest oral histories</option>
+            <option value="issue">Most tree issues</option>
           </select>
         </label>
         <div class="side-meta" id="sideMeta"></div>
@@ -377,7 +382,6 @@ dialog::backdrop{background:rgba(38,38,36,.28)}
         <span><i class="lg-line ok"></i>Linked on the tree</span>
         <span><i class="lg-line miss"></i><span class="status-icon status-icon--close"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.4 6.7C3.4 4.6 4.8 4.6 6 6S8.6 7.4 9.6 5.3"/></svg></span>Both on the tree, not linked</span>
         <span><i class="lg-line bad"></i><span class="status-icon status-icon--bad"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.3 3.3 8.7 8.7M8.7 3.3 3.3 8.7"/></svg></span>Tree shows someone else</span>
-        <span><i class="lg-line"></i>Oral history only</span>
         </div><div class="zoom"><button id="zOut" aria-label="Zoom out">−</button><output id="zPct">100%</output><button id="zIn" aria-label="Zoom in">+</button><button id="zFit">Fit</button></div>
       </div>
     </main>
@@ -413,7 +417,7 @@ dialog::backdrop{background:rgba(38,38,36,.28)}
     </ul>
     <h3>Getting around</h3>
     <ul>
-      <li><span><b>Summary</b> shows the overall numbers, every oral history as a square, and work lists of people to add, missing links, conflicts, duplicates and thin matches. Click a row or a square to open that family; "Download list" saves a list as a spreadsheet.</span></li>
+      <li><span><b>Summary</b> (top right) shows the overall numbers and lists of people to add, new details, tree issues and thin matches. Click a row to open that person; "Download" saves a list as a spreadsheet.</span></li>
       <li><span>Hover a person to compare the oral history with the Family Tree. Click to keep the card open.</span></li>
       <li><span>Click a count above the tree to highlight those people.</span></li>
       <li><span>Pinch on the trackpad to zoom, drag or scroll to move. <kbd>↑</kbd> <kbd>↓</kbd> change oral history, <kbd>/</kbd> searches, <kbd>Esc</kbd> closes a card.</span></li>
@@ -554,9 +558,7 @@ const byId = new Map(fams.map(f => [f.f, f]));
   $('totals').innerHTML = [
     [fams.length.toLocaleString(), 'oral histories'],
     [T.n.toLocaleString(), 'people named'],
-    [Math.round(100 * T.on / T.n) + '%', 'on the Family Tree'],
-    [T.add.toLocaleString(), 'could be added'],
-    [T.facts.toLocaleString(), 'new details for the tree']
+    [Math.round(100 * T.on / T.n) + '%', 'on the Family Tree']
   ].map(([b, s]) => `<div class="total"><b>${b}</b><span>${s}</span></div>`).join('');
 })();
 
@@ -1072,7 +1074,7 @@ wrap.addEventListener('click', e => { if (e.target === wrap && !justDragged) clo
 wrap.addEventListener('scroll', () => { if (shown && !pinned) closePop(); }, {passive:true});
 canvas.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { const g = nodeOf(e); if (g) { e.preventDefault(); g.dispatchEvent(new MouseEvent('click', {bubbles:true})); } } });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { if (shown) closePop(); else if (document.activeElement === qEl && qEl.value) { qEl.value = ''; renderList(); } return; }
+  if (e.key === 'Escape') { if (document.body.classList.contains('view-summary')) { setView('trees'); return; } if (shown) closePop(); else if (document.activeElement === qEl && qEl.value) { qEl.value = ''; renderList(); } return; }
   if (e.target.closest('input, select, textarea, dialog') || e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === '/') { e.preventDefault(); qEl.focus(); qEl.select(); }
   else if (e.key === 'ArrowDown' || e.key === 'j') { e.preventDefault(); step(1); }
@@ -1113,43 +1115,38 @@ function factList(p){
   return out;
 }
 const PAIR = {p:'parent and child', i:'brother and sister', s:'husband and wife'};
-const Q = {add:[], facts:[], miss:[], bad:[], dup:[], thin:[]};
+const Q = {add:[], facts:[], issues:[], thin:[]};
 fams.forEach(f => {
   f.ppl.forEach(p => {
     if (p.hid) return;
     if (p.add) Q.add.push({f, p});
     if (p.facts) Q.facts.push({f, p});
-    if (/duplicate/.test(p.why) && linked(p)) Q.dup.push({f, p});
+    if (/duplicate/.test(p.why) && linked(p)) Q.issues.push({f, p, kind:'Likely duplicate'});
     if (linked(p) && evidence(p, f).strength === 'Thin') Q.thin.push({f, p});
   });
-  f.edges.forEach(e => { if (e.st === 'miss') Q.miss.push({f, e}); if (e.st === 'bad') Q.bad.push({f, e}); });
+  f.edges.forEach(e => {
+    if (e.st === 'bad') Q.issues.push({f, e, p: e.a, kind:'Different parent'});
+    if (e.st === 'miss') Q.issues.push({f, e, p: e.a, kind:'Missing link'});
+  });
 });
 const ID = q => q ? `<span class="mono">${esc(q)}</span>` : '';
+const other = it => (it.p.why.match(/\(([A-Z0-9]{4}-[A-Z0-9]{3,4})\)/) || [])[1] || '';
+const issueText = it => it.kind === 'Missing link' ? `Not linked to ${full(it.e.b)} as ${PAIR[it.e.rel]}`
+  : it.kind === 'Different parent' ? `Tree lists ${tName(treeP(it.e.other)) || it.e.other} instead of ${full(it.e.b)}`
+  : `Another record (${other(it)}) fits equally well`;
 const QUEUES = {
-  add: {title:'Could be added', note:'Not on the tree, have died, and a close relative is already there.',
-    head:['Person', 'In the oral history', 'Died', 'Relative already on the tree', 'Their tree ID'],
-    row:({p}) => [full(p), relLabel(p), year(p.d), `${esc(full(p.near))}, ${esc(relLabel(p.near).toLowerCase())}`, ID(p.near.pid)],
-    csv:({p}) => [full(p), relLabel(p), year(p.d), full(p.near), p.near.pid]},
-  facts: {title:'New details', note:'On the tree, but the oral history has something the tree record lacks.',
-    head:['Person', 'In the oral history', 'What the oral history adds', 'Tree ID'],
-    row:({p}) => [full(p), relLabel(p), esc(factList(p).join(', ')), ID(p.pid)],
-    csv:({p}) => [full(p), relLabel(p), factList(p).join('; '), p.pid]},
-  miss: {title:'Missing links', note:'Both people are on the tree, but the tree does not connect them.',
-    head:['Person', 'Relative', 'Should be linked as', 'Tree IDs'],
-    row:({e}) => [full(e.a), `${esc(full(e.b))}, ${esc(relLabel(e.b).toLowerCase())}`, PAIR[e.rel], `${ID(e.a.pid)} · ${ID(e.b.pid)}`],
-    csv:({e}) => [full(e.a), full(e.b), PAIR[e.rel], e.a.pid + ' ' + e.b.pid]},
-  bad: {title:'Conflicts', note:'The tree lists a different father or mother from the oral history.',
-    head:['Person', 'Parent in the oral history', 'The tree lists instead', 'Tree IDs'],
-    row:({e}) => [full(e.a), full(e.b), esc(tName(treeP(e.other)) || e.other), `${ID(e.a.pid)} · ${ID(e.other)}`],
-    csv:({e}) => [full(e.a), full(e.b), tName(treeP(e.other)), e.a.pid + ' ' + e.other]},
-  dup: {title:'Likely duplicates', note:'Two tree records fit this person equally well.',
-    head:['Person', 'In the oral history', 'Chosen record', 'Other record'],
-    row:({p}) => [full(p), relLabel(p), ID(p.pid), ID((p.why.match(/\(([A-Z0-9]{4}-[A-Z0-9]{3,4})\)/) || [])[1])],
-    csv:({p}) => [full(p), relLabel(p), p.pid, (p.why.match(/\(([A-Z0-9]{4}-[A-Z0-9]{3,4})\)/) || [])[1] || '']},
-  thin: {title:'Thin matches', note:'Counted as on the tree with little else agreeing. The ones to check first.',
-    head:['Person', 'In the oral history', 'Why it counts', 'Tree ID'],
-    row:({p}) => [full(p), relLabel(p), esc(p.why.replace(/\. The search had not offered it/, '')), ID(p.pid)],
-    csv:({p}) => [full(p), relLabel(p), p.why, p.pid]},
+  add: {title:'Could be added', head:['Person', 'In the oral history', 'Relative on the tree'],
+    row:({p}) => [full(p), relLabel(p), `${esc(full(p.near))} ${ID(p.near.pid)}`],
+    csv:({p}) => [full(p), relLabel(p), full(p.near) + ' ' + p.near.pid]},
+  facts: {title:'New details', head:['Person', 'Tree ID', 'What the oral history adds'],
+    row:({p}) => [full(p), ID(p.pid), esc(factList(p).join(', '))],
+    csv:({p}) => [full(p), p.pid, factList(p).join('; ')]},
+  issues: {title:'Tree issues', head:['Person', 'Tree ID', 'Issue'],
+    row:it => [full(it.p), ID(it.p.pid), `<span class="kind">${it.kind}</span> ${esc(issueText(it))}`],
+    csv:it => [full(it.p), it.p.pid, it.kind + ': ' + issueText(it)]},
+  thin: {title:'Thin matches', head:['Person', 'Tree ID', 'Why it counts'],
+    row:({p}) => [full(p), ID(p.pid), esc(p.why.replace(/\. The search had not offered it/, ''))],
+    csv:({p}) => [full(p), p.pid, p.why]},
 };
 let qKey = 'add', qShown = 100;
 function placeOf(p){
@@ -1166,47 +1163,31 @@ function placeOf(p){
 }
 function buildSummary(){
   const all = fams.flatMap(f => f.ppl), on = all.filter(p => p.cat === 'on').length;
-  const review = Q.miss.length + Q.bad.length + Q.dup.length;
   const by = {};
   all.forEach(p => { const k = placeOf(p); if (!k) return; (by[k] ||= [0, 0]); by[k][0]++; by[k][1] += p.cat === 'on'; });
-  const order = ['Parents', 'Aunts and uncles', 'Brothers and sisters', 'Grandparents', 'Great-grandparents', 'Spouses', 'People interviewed'];
-  const bins = Array(10).fill(0); fams.forEach(f => bins[Math.min(9, Math.floor(10 * f.c.on / f.n))]++);
-  const mx = Math.max(...bins), none = fams.filter(f => !f.c.on).length;
+  const order = ['Parents', 'Aunts and uncles', 'Brothers and sisters', 'Grandparents', 'Great-grandparents', 'Spouses'];
   const shade = s => s === 0 ? 'q0' : s < .25 ? 'q1' : s < .5 ? 'q2' : s < .75 ? 'q3' : 'q4';
-  const sq = [...fams].sort((a, b) => b.c.on / b.n - a.c.on / a.n || b.n - a.n);
+  const sq = [...fams].sort((a, b) => b.c.on / b.n - a.c.on / a.n || b.n - a.n), none = fams.filter(f => !f.c.on).length;
   $('summary').innerHTML = `
     <div class="sum-wrap">
+      <div class="sum-top"><h2>Summary</h2><button class="sum-close" id="sumClose">Back to the family trees</button></div>
       <div class="tiles">
-        <div class="tile main"><b>${Math.round(100 * on / all.length)}%</b><span>of ${all.length.toLocaleString()} people named are on the Family Tree</span></div>
-        <button class="tile" data-go="add"><b>${Q.add.length.toLocaleString()}</b><span>people who could be added</span></button>
-        <button class="tile" data-go="facts"><b>${Q.facts.length.toLocaleString()}</b><span>people with new details for the tree</span></button>
-        <button class="tile" data-go="miss"><b>${review.toLocaleString()}</b><span>links, conflicts and duplicates to review</span></button>
+        <div class="tile main"><b>${Math.round(100 * on / all.length)}%</b><span>of ${all.length.toLocaleString()} people are on the Family Tree</span></div>
+        <button class="tile" data-go="add"><b>${Q.add.length.toLocaleString()}</b><span>could be added</span></button>
+        <button class="tile" data-go="issues"><b>${Q.issues.length.toLocaleString()}</b><span>tree issues to review</span></button>
       </div>
       <div class="sum-row">
         <div class="panel"><h3>On the tree, by place in the family</h3>
-          ${order.filter(k => by[k]).map(k => `<div class="pbar"><span>${k} <small>${by[k][0].toLocaleString()}</small></span><i><u style="width:${(100 * by[k][1] / by[k][0]).toFixed(1)}%"></u></i><em>${Math.round(100 * by[k][1] / by[k][0])}%</em></div>`).join('')}
+          ${order.filter(k => by[k]).map(k => `<div class="pbar"><span>${k}</span><i><u style="width:${(100 * by[k][1] / by[k][0]).toFixed(1)}%"></u></i><em>${Math.round(100 * by[k][1] / by[k][0])}%</em></div>`).join('')}
         </div>
-        <div class="panel"><h3>Oral histories by share on the tree</h3>
-          <div class="hist">${bins.map((b, i) => `<div title="${b} oral histories with ${i * 10}–${i * 10 + 9}% on the tree"><small>${b}</small><u style="height:${Math.max(2, 100 * b / mx)}%"></u></div>`).join('')}</div>
-          <div class="hist-ax"><span>0%</span><span>50%</span><span>100%</span></div>
-          <p class="panel-note">${none} oral histories (${Math.round(100 * none / fams.length)}%) have nobody on the tree yet.</p>
-        </div>
-        <div class="panel"><h3>Where to start</h3>
-          <div class="starts">
-            <button data-go="add"><b>${Q.add.length}</b><span>people to add</span><em>Open</em></button>
-            <button data-go="bad"><b>${Q.bad.length}</b><span>parent conflicts</span><em>Open</em></button>
-            <button data-go="miss"><b>${Q.miss.length}</b><span>missing links</span><em>Open</em></button>
-            <button data-go="thin"><b>${Q.thin.length}</b><span>thin matches to check</span><em>Open</em></button>
-          </div>
+        <div class="panel"><h3>Every oral history <span class="h-note">${none} have nobody on the tree</span></h3>
+          <div class="squares" id="squares">${sq.map(f => `<i class="${shade(f.c.on / f.n)}" data-f="${f.idx}" title="${esc(f.title)} · ${f.c.on} of ${f.n} on the tree"></i>`).join('')}</div>
+          <div class="sq-key"><span>Less on the tree</span><i class="q0"></i><i class="q1"></i><i class="q2"></i><i class="q3"></i><i class="q4"></i><span>More</span></div>
         </div>
       </div>
-      <div class="panel"><h3>Every oral history <span class="h-note">One square each, darker means more people on the tree. Click a square to open it.</span></h3>
-        <div class="squares" id="squares">${sq.map(f => `<i class="${shade(f.c.on / f.n)}" data-f="${f.idx}" title="${esc(f.title)} · ${f.c.on} of ${f.n} on the tree"></i>`).join('')}</div>
-        <div class="sq-key"><span><i class="q4"></i>75% or more</span><span><i class="q3"></i>50–74%</span><span><i class="q2"></i>25–49%</span><span><i class="q1"></i>Under 25%</span><span><i class="q0"></i>Nobody on the tree</span></div>
-      </div>
-      <div class="panel" id="queue"><h3>Work lists <span class="h-note">Click a row to open that person in their family tree.</span></h3>
+      <div class="panel" id="queue"><h3>Lists <span class="h-note">Click a row to open that person in their tree</span></h3>
         <div class="qtabs" role="tablist">${Object.entries(QUEUES).map(([k, q]) => `<button role="tab" data-q="${k}" aria-selected="${k === qKey}">${q.title}<b>${Q[k].length.toLocaleString()}</b></button>`).join('')}
-          <button class="csv" id="csv">Download list</button></div>
+          <button class="csv" id="csv">Download</button></div>
         <div id="qbody"></div>
       </div>
     </div>`;
@@ -1215,8 +1196,7 @@ function buildSummary(){
 function renderQueue(){
   const q = QUEUES[qKey], items = Q[qKey];
   $('summary').querySelectorAll('.qtabs [data-q]').forEach(b => b.setAttribute('aria-selected', b.dataset.q === qKey));
-  $('qbody').innerHTML = `<p class="q-note">${q.note}</p>
-    <div class="qtable"><table><thead><tr>${q.head.map(h => `<th>${h}</th>`).join('')}<th>Oral history</th></tr></thead><tbody>
+  $('qbody').innerHTML = `<div class="qtable"><table><thead><tr>${q.head.map(h => `<th>${h}</th>`).join('')}<th>Oral history</th></tr></thead><tbody>
     ${items.slice(0, qShown).map((it, i) => { const c = q.row(it); return `<tr data-row="${i}"><td><b>${esc(c[0])}</b></td>${c.slice(1).map(x => `<td>${x}</td>`).join('')}<td class="n">${esc(it.f.f)}</td></tr>`; }).join('')}
     </tbody></table></div>
     ${items.length > qShown ? `<button class="more" id="more">Show ${Math.min(100, items.length - qShown)} more of ${(items.length - qShown).toLocaleString()} left</button>` : ''}
@@ -1232,12 +1212,12 @@ function openPerson(f, p){
 }
 function setView(v, opts = {}){
   document.body.classList.toggle('view-summary', v === 'summary');
-  document.querySelectorAll('.views button').forEach(b => b.setAttribute('aria-current', b.dataset.view === v));
+  $('sumBtn').setAttribute('aria-pressed', v === 'summary');
   closePop();
   if (v === 'summary') { if (!$('summary').firstChild) buildSummary(); if (!opts.keepHash) { try { history.replaceState(null, '', '#summary'); } catch (e) {} } }
   else if (current) { if (!opts.keepHash) { try { history.replaceState(null, '', '#' + encodeURIComponent(current.f)); } catch (e) {} } requestAnimationFrame(fit); }
 }
-document.querySelector('.views').addEventListener('click', e => { const b = e.target.closest('[data-view]'); if (b) setView(b.dataset.view); });
+$('sumBtn').onclick = () => setView(document.body.classList.contains('view-summary') ? 'trees' : 'summary');
 $('summary').addEventListener('click', e => {
   const go = e.target.closest('[data-go]');
   if (go) { qKey = go.dataset.go; qShown = 100; renderQueue(); $('queue').scrollIntoView({behavior:'smooth', block:'start'}); return; }
@@ -1253,7 +1233,8 @@ $('summary').addEventListener('click', e => {
   const sq = e.target.closest('[data-f]');
   if (sq) { setView('trees'); select(fams[+sq.dataset.f]); listEl.querySelector('[aria-current="true"]')?.scrollIntoView({block:'center'}); return; }
   const row = e.target.closest('tr[data-row]');
-  if (row) { const it = Q[qKey][+row.dataset.row]; openPerson(it.f, it.p || it.e.a); }
+  if (row) { const it = Q[qKey][+row.dataset.row]; openPerson(it.f, it.p); }
+  if (e.target.id === 'sumClose') setView('trees');
 });
 
 // ---------- start ----------
@@ -1262,7 +1243,7 @@ renderList();
 const opened = fromHash();
 select(opened || [...fams].sort((a, b) => (b.c.on + b.okE) - (a.c.on + a.okE))[0], {keepHash: true});
 listEl.querySelector('[aria-current="true"]')?.scrollIntoView({block:'center'});
-setView(opened ? 'trees' : 'summary', {keepHash: true});   // a link to one oral history opens its tree; otherwise the summary comes first
+setView(location.hash === '#summary' ? 'summary' : 'trees', {keepHash: true});   // the family trees are the page; the summary opens on request
 window.addEventListener('hashchange', () => {
   if (location.hash === '#summary') return setView('summary', {keepHash:true});
   const f = fromHash(); if (f) { if (document.body.classList.contains('view-summary')) setView('trees', {keepHash:true}); if (f !== current) select(f, {keepHash:true}); }
